@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ContactPro X - Contact Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#5b8cff">
+</head>
+<body>
+    <header class="topbar">
+        <h1 class="logo">Contact<span>Pro X</span></h1>
+        <div class="actions">
+            <input id="search" class="search" type="search" placeholder="Search name, email, phone, company, tags, group">
+            <select id="groupFilter" title="Group" class="select"><option value="all">All Groups</option></select>
+            <select id="tagFilter" title="Tag" class="select"><option value="all">All Tags</option></select>
+            <select id="favFilter" title="Fav" class="select">
+                <option value="any">All</option>
+                <option value="fav">Fav</option>
+                <option value="nonfav">Non-Fav</option>
+            </select>
+            <select id="sortBy" title="Sort" class="select">
+                <option value="updateddesc">Recently Updated</option>
+                <option value="createddesc">Newest</option>
+                <option value="nameasc">Name A-Z</option>
+                <option value="companyasc">Company A-Z</option>
+            </select>
+            <label class="file-btn"><input id="importCsv" type="file" accept=".csv,text/csv">Import CSV</label>
+            <button id="exportCsv" class="btn ghost">Export CSV</button>
+            <label class="file-btn"><input id="importJson" type="file" accept="application/json">Import JSON</label>
+            <button id="exportJson" class="btn ghost">Export JSON</button>
+            <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌙</button>
+            <button id="newBtn" class="btn">New</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="toolbar card">
+            <input type="checkbox" id="selectAll" class="select-all"><label for="selectAll" class="muted">Select all</label>
+            <button id="bulkDelete" class="btn danger">Delete Selected</button>
+            <button id="bulkAssignGroup" class="btn">Assign Group</button>
+            <div class="split">
+                <button id="bulkExportCSV" class="btn ghost">Export CSV</button>
+                <button id="bulkExportJSON" class="btn ghost">Export JSON</button>
+                <button id="bulkExportVCF" class="btn ghost">Export VCF</button>
+                <button id="bulkExportPDF" class="btn ghost">Export PDF</button>
+            </div>
+            <div style="flex:1"></div>
+            <button id="undoBtn" class="btn ghost">Undo</button>
+            <button id="redoBtn" class="btn ghost">Redo</button>
+            <button id="snapshotBtn" class="btn ok">Backup</button>
+            <button id="restoreBtn" class="btn ghost">Restore</button>
+            <span class="hint" id="selCount">0 selected</span>
+        </div>
+
+        <section class="card">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email / Phone</th>
+                            <th>Company</th>
+                            <th>Group</th>
+                            <th>Tags</th>
+                            <th>Fav</th>
+                            <th>Updated</th>
+                            <th class="actions-col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <dialog id="formDialog">
+        <form method="dialog" class="dialog-card" id="contactForm">
+            <h3 id="formTitle">New Contact</h3>
+            <input type="hidden" id="cid">
+            <div class="grid">
+                <label><span>Name</span><input id="name" required placeholder="E.g., Sandeep Kovvuru"></label>
+                <label><span>Email</span><input id="email" type="email" required placeholder="name@example.com"></label>
+                <label><span>Phone</span><input id="phone" required placeholder="+91 90000 00000"></label>
+                <label><span>Company</span><input id="company" placeholder="E.g., Acme Corp"></label>
+                <label><span>Group</span><input id="group" placeholder="Clients, Team, Family"></label>
+                <label class="span-2"><span>Tags</span><div id="tagBox" class="tag-input"><input id="tagInput" placeholder="Type press Enter"></div></label>
+                <label><span>Favorite</span><select id="favorite"><option value="false">No</option><option value="true">Yes</option></select></label>
+            </div>
+            <div class="dialog-actions">
+                <button value="cancel" class="btn ghost">Cancel</button>
+                <button value="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Confirm Delete -->
+    <dialog id="confirmDialog">
+        <form method="dialog" class="dialog-card">
+            <p id="confirmMsg">Are you sure?</p>
+            <div class="dialog-actions">
+                <button value="cancel" class="btn ghost">Cancel</button>
+                <button value="confirm" class="btn danger">Delete</button>
+            </div>
+        </form>
+    </dialog>
+
+    <footer class="footer">
+        <p>&copy; 2025 ContactPro X - Vanilla HTML, CSS, JS</p>
+    </footer>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
