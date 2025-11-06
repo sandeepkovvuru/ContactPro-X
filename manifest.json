@@ -1,0 +1,59 @@
+{
+  "name": "ContactPro X - Smart Contact Management System",
+  "short_name": "ContactPro X",
+  "description": "A lightweight, offline-ready contact management system with import/export, undo/redo, and dark/light themes",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%232563eb' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold'>CP</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%232563eb' width='512' height='512'/><text x='50%' y='50%' font-size='200' fill='white' text-anchor='middle' dominant-baseline='middle' font-weight='bold'>CP</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "business"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23f5f5f5' width='540' height='720'/><text x='270' y='360' font-size='40' text-anchor='middle' fill='%23666'>Contact Management System</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Add Contact",
+      "short_name": "Add",
+      "description": "Create a new contact",
+      "url": "./index.html?action=add"
+    },
+    {
+      "name": "Search Contacts",
+      "short_name": "Search",
+      "description": "Search existing contacts",
+      "url": "./index.html?action=search"
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "prefer_related_applications": false
+}
